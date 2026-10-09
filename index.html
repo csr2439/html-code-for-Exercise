@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Exercise Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: green;
+        }
+
+        input, button {
+            padding: 10px;
+            margin: 5px;
+        }
+
+        button {
+            background-color: green;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 80%;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+        }
+
+        th {
+            background-color: lightgreen;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>My Exercise Tracker</h1>
+    <p>Track your daily workouts!</p>
+
+    <input type="text" id="exercise"
+           placeholder="Exercise Name">
+
+    <input type="number" id="duration"
+           placeholder="Duration (minutes)" min="1">
+
+    <input type="number" id="calories"
+           placeholder="Calories Burned" min="0">
+
+    <button onclick="addExercise()">
+        Add Exercise
+    </button>
+
+    <h2>Exercise History</h2>
+
+    <table id="exerciseTable">
+        <tr>
+            <th>Exercise</th>
+            <th>Duration</th>
+            <th>Calories</th>
+        </tr>
+    </table>
+
+    <script>
+        function addExercise() {
+            let exercise =
+                document.getElementById("exercise").value;
+            let duration =
+                document.getElementById("duration").value;
+            let calories =
+                document.getElementById("calories").value;
+
+            if (!exercise.trim() ||
+                duration === "" ||
+                calories === "" ||
+                Number(duration) <= 0 ||
+                Number(calories) < 0) {
+                alert("Please enter valid exercise details");
+                return;
+            }
+
+            let table =
+                document.getElementById("exerciseTable");
+
+            let row = table.insertRow();
+
+            row.insertCell(0).textContent = exercise;
+            row.insertCell(1).textContent =
+                duration + " min";
+            row.insertCell(2).textContent =
+                calories + " kcal";
+
+            document.getElementById("exercise").value = "";
+            document.getElementById("duration").value = "";
+            document.getElementById("calories").value = "";
+        }
+    </script>
+
+</body>
+</html>
